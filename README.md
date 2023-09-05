@@ -10,7 +10,7 @@ So, with test sections and imported module test documents we can create a rather
 Module and section summaries provide condensed status information and guide the developer to the failed tests, even in very complex structure. The module summary in the topmost document indicates whether the entire suite failed or succeeded.
 
 
-<img src="https://github.com/bassmationcode/js-test/blob/main/docs/img/fig-001.png?raw=true" alt="First impression" style="width:300px"/>
+<img src="https://github.com/bassmationcode/js-test/blob/main/docs/img/fig-001.png?raw=true" alt="First impression" style="width:500px"/>
 
 
 ## Usage

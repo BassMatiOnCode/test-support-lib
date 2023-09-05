@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en-US"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="USP" />
+<meta name="creation-date" content="2023-08-02" />
+<meta name="editor" content="USP" />
+<meta name="change-date" content="2023-08-02" />
+<meta name="version" content="1" />
+<meta name="tags" content="project, js-test, test, test module" />
+<link rel="stylesheet" href="/inc/js-test/js-test-0.css" />
+<script src="/inc/js-test/js-test-0-01.js"></script>
+
+<title>Test Module</title>
+
+</head><body module-status="">
+
+<h1>Test Module</h1>
+
+<p>Test module subtitle. Should be a one-liner.</p>
+
+<script>test.initModule( false ) ;</script>
+
+<p>More details about the module test</p>
+
+<h2 cbc>Test Section</h2><div>
+
+<p>Section description.</p>
+<p>Could be several paragraphs, tables, images, et cetera.</p>
+
+<script>
+test.initSection( );
+</script>
+
+<p>More HTML elements might appear here.</p>
+
+<script>
+( function ( ) {
+const i = 0 ;
+test.checkEqual ( "Test title", "Test description", 0, 0, "Values should be equal" );
+test.checkEqual ( "Test title", "Test description", 0, 1, "Values should be equal" );
+} ) ( ) ;
+</script>
+
+<p>Elements might appear between tests.</p>
+
+<script>
+( function ( ) {
+const i = 0 ;
+test.checkEqual ( "Test title", "Test description", 0, 0, "Values should be equal" );
+test.checkEqual ( "Test title", "Test description", 0, 0, "Values should be equal" );
+test.closeSection( );
+} ) ( ) ;
+</script>
+
+<!-- h2 test section --></div>
+
+<h2 cbc>Test Section</h2><div>
+
+<p>Section description.</p>
+<p>Could be several paragraphs, tables, images, et cetera.</p>
+
+<script>
+test.initSection( );
+</script>
+
+<p>More HTML elements might appear here.</p>
+
+<script>
+( function ( ) {
+const i = 0 ;
+test.checkEqual ( "Test title", "Test description", 0, 0, "Values should be equal" );
+test.checkEqual ( "Test title", "Test description", 0, 0, "Values should be equal" );
+} ) ( ) ;
+</script>
+
+<p>Elements might appear between tests.</p>
+
+<script>
+( function ( ) {
+const i = 0 ;
+test.checkEqual ( "Test title", "Test description", 0, 0, "Values should be equal" );
+test.checkEqual ( "Test title", "Test description", 0, 0, "Values should be equal" );
+test.closeSection( );
+} ) ( ) ;
+</script>
+
+<!-- h2 test section --></div>
+
+<script>
+test.closeModule( );
+</script>
+
+</body></html>

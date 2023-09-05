@@ -1,0 +1,73 @@
+﻿<!DOCTYPE html>
+<html lang="en-US"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="template-info" file-name="empty.htm" version="2022-12-01" editor="USP" />
+<meta name="author" content="USP" />
+<meta name="creation-date" content="2023-08-02" />
+<meta name="editor" content="USP" />
+<meta name="change-date" content="2023-08-02" />
+<meta name="version" content="1" />
+<meta name="categories" content="" />
+<meta name="tags" content="" />
+<meta name="description" content="A lightweight test framework for JavaScritp" />
+
+<link rel="icon" type="image/png" href="/favicon.png" sizes="16x16" />
+<link rel="stylesheet" href="/inc/page.css" />
+<link rel="stylesheet" href="/site.css" />
+ 
+<title></title>
+
+</head><body><header id="page-header"><object data="title.svg" type="image/svg+xml"></object></header><div id="main-toolbar"></div><main id="page-content">
+
+<h1>JS-Test</h1>
+
+<p id="page-abstract"></p>
+
+<h2 cbc>Overview</h2><div>
+
+<p>Module tests focus on some specific aspect of a program. They are written in JavaScript, embedded in an HTML document. The <tt>js-test</tt> library provides functions like <tt>check()</tt> which compares the result of an operation with the expected value. The result (of the comparison) is recorded in the HTML document.</p>
+
+<p>Tests can be grouped in <tt>sections</tt>, which give test modules some kind of structure. Sections and tests are numbered automatically.</p>
+
+<!--h2--></div>
+
+<h2 cbc>Implementation Details</h2><div>
+
+<h3 cbc>Collecting Changes</h3><div>
+
+<p>When a test is run, the following state variables change:</p>
+
+<ul>
+<li>sectionSummary.testsPerformed += 1</li>
+<li>moduleSummary.testsPerformed += 1</li>
+</ul>
+
+<p>When a test succeeds, the following state variables change:</p>
+<ul>
+<li>testContainer.testStatus = "success"</li>
+<li>sectionSummary.testsSucceeded += 1</li>
+<li>moduleSummary.testSucceeded += 1</li>
+</ul>
+
+<ul>
+<li>testContainer.testStatus = "fail"</li>
+<li>testSection.tests</li>
+</ul>
+
+
+<li>testSection.testStatus = "fail"</li>
+
+<!--h3--></div>
+
+<!--h2--></div>
+
+<h2 cbc>Links</h2><div>
+
+<p>A <a href="t-0-1.htm">module test</a></p>
+
+<p>A <a href="t-0.htm">module test suite</a></p>
+
+<!--h2--></div>
+
+</main><footer id="page-footer"></footer><script type="module" src="/inc/page.js" ></script></body></html>

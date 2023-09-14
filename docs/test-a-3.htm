@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en-US"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="USP" />
+<meta name="creation-date" content="2023-08-02" />
+<meta name="editor" content="USP" />
+<meta name="change-date" content="2023-08-02" />
+<meta name="version" content="1" />
+<meta name="tags" content="project, js-test, test, root" />
+<link rel="stylesheet" href="/inc/collapsible/collapsible-5.css" />
+<link rel="stylesheet" href="/inc/js-test/js-test-0.css" />
+<script src="/inc/js-test/js-test-0.js"></script>
+
+<title>Nested Test Module</title>
+
+</head><body>
+
+<h1>Calculator Mean Functions</h1>
+
+<script>test.initModule( { addModuleSummary : true } ); // creates the module summary </script>
+	
+<p>This test module deals with the <tt>arithmeticMean()</tt> and <tt>geometricMean()</tt> functions.</p>
+
+<h2 cbc>Section <span class="section-number"></span> &ndash; arithmeticMean()</h2><div>
+
+<script>test.initSection();</script>
+	
+<p>Testing variadic function calls. Any number of parameters must be accepted.</p>
+
+<script>
+console.log( "registering test 1" );
+test.register ( function ( ) {
+	console.log( "test section 1 running" );
+	test.checkEqual( "arithmeticMean( 1, 2, 3) === 6", "", calculator.arithmeticMean(1,2,3), 2, "" );
+	test.checkEqual( "arithmeticMean( 1, 2, 3, 4) === 2.5", "", calculator.arithmeticMean(1,2,3,4), 2.5, "" );
+	} ) ;
+</script>
+
+<p>Testing unacceptable inputs:</p>
+
+<script>
+console.log( "registering test 2" );
+test.register ( function ( ) {
+	test.checkEqual( "isNaN( arithmeticMean()) === true", "Providing no parameters should not raise an expception.", isNaN( calculator.arithmeticMean( )), true, "" );
+	test.checkEqual( "arithmeticMean( null, null, null )) === 0", "Null parameters should return zero", calculator.arithmeticMean( null, null, null ), 0, "" );
+	} ) ;
+</script>
+
+<script>
+test.register ( function ( ) {
+	test.closeSection();
+	console.log( "Section 1 closed" );
+	} ) ;
+</script>
+
+<!--h2--><!--Section 1--></div>
+
+
+<h2 cbc>Section <span class="section-number"></span> &ndash; geometricMean()</h2><div>
+
+<script>test.initSection();</script>
+	
+<p>Testing variadic function calls. Any number of parameters must be accepted.</p>
+
+<script>
+console.log( "registering tests" );
+test.register ( function ( ) {
+	console.log( "Test section 2 running" );
+	test.checkEqual( "geometricMean( 2, 3 ) === 6", "", calculator.geometricMean( 2, 3 ), 6, "" );
+	test.checkEqual( "geometricMean( -1, -2, 3 ) === 6", "", calculator.geometricMean( 1, -2, 3 ), 6, "" );
+	test.closeSection();
+	console.log( "Test section 2 closed" );
+	} ) ;
+</script>
+
+<!--h2--><!--Section 2 geometricMean()--></div>
+	
+<script type="module">
+import * as calculator from "./calculator-module.js";
+window.calculator = calculator;
+console.log( "running test scripts" );
+test.run( );
+test.closeModule( );
+</script>
+
+</body></html>

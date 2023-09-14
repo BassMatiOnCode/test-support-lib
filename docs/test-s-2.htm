@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en-US"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="USP" />
+<meta name="creation-date" content="2023-08-02" />
+<meta name="editor" content="USP" />
+<meta name="change-date" content="2023-08-02" />
+<meta name="version" content="1" />
+<meta name="tags" content="project, js-test, test, root" />
+<link rel="stylesheet" href="/inc/js-test/js-test-0.css" />
+<script src="/inc/js-test/js-test-0.js"></script>
+<script src="calculator-lib.js"></script>
+
+<title>Synchronous Calculator Test Module</title>
+
+</head><body>
+
+<h1>Calculator Sum and Product Functions</h1>
+
+<script>test.initModule( ); // creates the module summary </script>
+	
+<p>This test module tests the calulator library functions.</p>
+
+<h2 cbc>Section <span class="section-number"></span> &ndash; sum()</h2><div>
+
+<script>test.initSection();</script>
+	
+<p>Testing variadic function calls. Any number of parameters must be accepted.</p>
+
+<script>
+console.log( "Test section 1 running" );
+test.checkEqual( "sum( 1, 2, 3) === 6", "", calculator.sum(1,2,3), 6, "" );
+test.checkEqual( "sum( 1, 2, 3, 4) === 10", "", calculator.sum(1,2,3,4), 10, "" );
+test.closeSection();
+console.log( "Section 1 closed" );
+</script>
+
+<!--h2--><!--Section 1--></div>
+
+<h2 cbc>Section <span class="section-number"></span> &ndash; product()</h2><div>
+
+<script>test.initSection();</script>
+	
+<p>Testing variadic function calls. Any number of parameters must be accepted.</p>
+
+<script>
+console.log( "Test section 2 running" );
+test.checkEqual( "product( 2, 3 ) === 6", "", calculator.product( 2, 3 ), 6, "" );
+test.checkEqual( "product( -1, -2, 3 ) === 6", "", calculator.product( -1, -2, 3 ), 6, "" );
+test.checkEqual( "product( 1, -2, 3, 4 ) === -24", "", calculator.product( 1, -2, 3, 4 ), -24, "" );
+test.closeSection();
+console.log( "Test section 2 closed" );
+</script>
+
+<!--h2--><!--Section 2 geometricMean()--></div>
+	
+<script>
+test.closeModule( );
+</script>
+
+</body></html>

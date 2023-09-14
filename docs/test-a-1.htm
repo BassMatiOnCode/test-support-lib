@@ -11,22 +11,20 @@
 <link rel="stylesheet" href="/inc/js-test/js-test-0.css" />
 <script src="/inc/js-test/js-test-0.js"></script>
 
-<title>Test Module</title>
+<title>Calculator Module Test Suite</title>
 
-</head><body module-status="">
+</head><body>
 
-<h1>Test Root Module</h1>
+<h1>Calculator Module Test Suite</h1>
 
-<p>Test module subtitle. Should be a one-liner.</p>
+<script>test.initModule( { addModuleSummary : true } ); </script>
 
-<script>
-test.initModule( ) ;
-</script>
+<p>The IFrames below integrate test-a-2.htm and test-a-3.htm.</p>
+	
+<iframe src="test-a-2.htm" ></iframe>
+<iframe src="test-a-3.htm" ></iframe>
 
-<iframe src="test-1.htm"></iframe>
-<iframe src="test-2.htm"></iframe>
-
-<script>
+<script type="module">
 test.closeModule( );
 </script>
 

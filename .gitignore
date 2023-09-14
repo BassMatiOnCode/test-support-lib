@@ -1,4 +1,10 @@
 .vs
 .bat
 /docs/inc
-
+/docs/colors.css
+/docs/site.css
+/docs/logo.svg
+/docs/toc.htm
+/classic
+/modbased
+/vs.lnk

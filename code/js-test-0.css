@@ -2,6 +2,10 @@
  *		js-test-0.css    2023-08-27    usp
  */
 
+ body {
+	padding-bottom : 50px ;
+	}
+
  div.test-summary p,
  div.test p { 
 	margin-left : 30px ;
@@ -12,7 +16,7 @@
 	}
 
 div.test {
-	margin : 10px 0px ;
+	margin : 20px 0px ;
 	}
 
 div.test p {

@@ -12,6 +12,8 @@ Module and section summaries provide condensed status information and guide the 
 
 <img src="https://github.com/bassmationcode/js-test/blob/main/docs/img/fig-001.png?raw=true" alt="First impression" style="width:500px"/>
 
+<p><a href="https://bassmationcode.github.io/js-test/js-test.htm">Documentation</a></p>
+
 
 ## Usage
 An author creates an HTML module test document and calls test functions defined in the js-test.js library. The library functions add HTML content to the test document, according to test result, and update the summaries up to the root document in a hierarchical structure.

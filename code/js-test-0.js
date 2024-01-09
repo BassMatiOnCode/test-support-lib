@@ -34,6 +34,7 @@ test.updateCounters = function( testContainer, data ) {
 				// Parent fails if a child failed
 				if ( summary.getAttribute( "test-status" ) === "success" ) {
 					// Revert success to fail, decrement success counters
+					// TODO: Check if counters are really to be decremented.
 					if ( summary.classList.contains( "section" )) data.counters.sectionsSucceeded -= 1;
 					else if ( summary.classList.contains( "module" )) data.counters.modulesSucceeded -= 1;
 					}
@@ -49,9 +50,9 @@ test.updateCounters = function( testContainer, data ) {
 			if ( data.counters ) for ( const [key, value] of Object.entries( data.counters )) this.incrementSummaryCounter( summary, key, value );
 			}
 		// Ascend to parent test container
-		testContainer = testContainer.parentElement.closest( ".test-container" ); 
+		testContainer = testContainer.parentElement.closest( ".test-container" );
 		if ( ! testContainer ) {
-			testContainer = parentWindow.frameElement && parentWindow.frameElement.closest( ".test-container" );  
+			testContainer = parentWindow.frameElement && parentWindow.frameElement.closest( ".test-container" );
 			parentWindow = parentWindow.parent;
 			}
 		}
@@ -63,7 +64,7 @@ test.initModule = function ( options = { addModuleSummary : false } ) {
 	// Create the module test summary elements
 	let s = '<div class="module test-summary">\r\n'
 		+ '<p class="status">Status:		<span>undefined</span></p>\r\n' ;
-	if ( options.addModuleSummary ) 
+	if ( options.addModuleSummary )
 		s += '<p class="modulesProcessed">Modules processed:	<span>0</span></p>\r\n'
 		+ '<p class="modulesSucceeded">Modules succeeded:	<span>0</span></p>\r\n'
 		+ '<p class="modulesFailed">Modules failed:	<span>0</span></p>\r\n'
@@ -90,9 +91,9 @@ test.closeModule = function( ) {
 		this.updateCounters( document.body, { counters : { modulesSucceeded : 1 } } );
 		}
 	} ;
-test.initSection = function ( options = { 
+test.initSection = function ( options = {
 	addModuleSummary : false ,
-	addSectionSummary : false } ) 
+	addSectionSummary : false } )
 	{
 	// REQ: The section init script element must be a direct child of the section test container.
 	this.sectionsProcessed += 1 ;
@@ -108,11 +109,11 @@ test.initSection = function ( options = {
 	if ( options.addSectionSummary ) {
 		s += '<p class="sectionsProcessed">Sections processed:	<span>0<span></p>\r\n'
 		+ '<p class="sectionsSucceeded">Sections succeeded:	<span>0<span></p>\r\n'
-		+ '<p class="sectionsFailed">Sections failed:	<span>0<span></p>\r\n' ;	
+		+ '<p class="sectionsFailed">Sections failed:	<span>0<span></p>\r\n' ;
 		}
-	s += '<p class="testsProcessed">Tests processed:	<span>0</span></p>\r\n' 
-		+ '<p class="testsSucceeded">Tests succeeded:	<span>0</span></p>\r\n' 
-		+ '<p class="testsFailed">Tests failed:		<span>0</span></p>\r\n' 
+	s += '<p class="testsProcessed">Tests processed:	<span>0</span></p>\r\n'
+		+ '<p class="testsSucceeded">Tests succeeded:	<span>0</span></p>\r\n'
+		+ '<p class="testsFailed">Tests failed:		<span>0</span></p>\r\n'
 		+ '</div>\r\n' ;
 	const template = document.createElement( "TEMPLATE" );
 	template.innerHTML = s;
@@ -134,7 +135,7 @@ test.closeSection = function( ) {
 		this.updateCounters( container, { counters : { sectionsSucceeded : 1 }} );
 		}
 	} ;
-test.createTestContainer = function ( title, description, success, calculated, expected, message ) {	
+test.createTestContainer = function ( title, description, success, calculated, expected, message ) {
 	//	Creates the test DIV container, filled with result-independent entries.
 	//	- - -
 	// Setup for synchronous calls
@@ -165,7 +166,7 @@ test.createTestContainer = function ( title, description, success, calculated, e
 	else { data.status = "fail" ; data.counters.testsFailed = 1 ; }
 	this.updateCounters( sectionContainer, data );
 	// Cleanup for synchronous calls
-	if ( document.currentScript ) this.currentScript = null ;  
+	if ( document.currentScript ) this.currentScript = null ;
 	}
 test.checkEqual = function ( title, description, calculated, expected, message ) {
 	this.createTestContainer( title, description, calculated === expected, calculated, expected, message );
@@ -173,16 +174,16 @@ test.checkEqual = function ( title, description, calculated, expected, message )
 test.register = function( testFunction ) {
 	//	Collect test functions and DOM environment informations for asynchronous execution.
 	// Must be used if the library under test is a JavaScript module.
-	this.testFunctions.push ( { 
-		func: testFunction, 
-		script: document.currentScript 
+	this.testFunctions.push ( {
+		func: testFunction,
+		script: document.currentScript
 		} ) ;
 	} ;
 test.run = function ( ) {
 	//	Runs the collected test functions. Usually called from a module script.
 	this.sectionsProcessed = 0;
 	for ( const test of this.testFunctions ) {
-		this.currentScript = test.script; 
-		test.func ( test.script );	
+		this.currentScript = test.script;
+		test.func ( test.script );
 		}
 	} ;

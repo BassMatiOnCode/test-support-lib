@@ -1,12 +1,12 @@
-# js-test
-A test-framework for hierarchical JavaScript module tests, based on HTML, CSS and JavaScript.
+# test-support-library (TSLib)
+A lightweight JavaScript library for hierarchical JavaScript module tests, based on pure HTML, CSS and JavaScript.
 
 ## HTML Documentation
 
-<p><a href="https://bassmationcode.github.io/js-test/js-test.htm">Documentation</a></p>
+<p><a href="https://bassmationcode.github.io/test-support-library/test-support-library.htm">Documentation</a></p>
 
 ## Overview
-A module test is defined in an HTML file. This is the module test document. The document contains a number of tests, written in JavaScript. Tests can be oranized into (collapsible) sections. This gives structure to the test document and improves readability.
+A module test is defined in an HTML file. This is the module test document. The document contains a number of tests, written in JavaScript. Tests can be organized into (collapsible) sections. This gives structure to the test document and improves readability.
 A parent test document can import child test documents into HTML IFRAMEs. They are handled like individual tests, but combine the results of an entire module test document.
 
 So, with test sections and imported module test documents we can create a rather flexible module test structure. Module tests are re-usable and can be combined into different test suites.  

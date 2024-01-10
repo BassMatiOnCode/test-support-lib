@@ -1,23 +1,22 @@
 # test-support-library (TSLib)
-A lightweight JavaScript library for hierarchical JavaScript module tests, based on pure HTML, CSS and JavaScript.
+An ultra-lightweight JavaScript module test library
+Based on pure HTML, CSS and JavaScript. Can test JavaScript modules and non-modules. No installation. No configuration. Supports test document trees.
 
 ## HTML Documentation
 
-<p><a href="https://bassmationcode.github.io/test-support-library/test-support-library.htm">Documentation</a></p>
+<p><a href="https://bassmationcode.github.io/test-support-lib/test-support-library.htm">Documentation</a></p>
 
 ## Overview
-A module test is defined in an HTML file. This is the module test document. The document contains a number of tests, written in JavaScript. Tests can be organized into (collapsible) sections. This gives structure to the test document and improves readability.
-A parent test document can import child test documents into HTML IFRAMEs. They are handled like individual tests, but combine the results of an entire module test document.
+A module test is defined an an ordinary HTML file, opened in the browser of your choice. The document contains test script elements, written in very simple JavaScript.
 
-So, with test sections and imported module test documents we can create a rather flexible module test structure. Module tests are re-usable and can be combined into different test suites.  
+A parent test document can import child test documents into HTML IFRAMEs, so a large test job can be organized into a nice test document tree. Test results are reported from child to parent documents.
 
-Module and section summaries provide condensed status information and guide the developer to the failed tests, even in very complex structure. The module summary in the topmost document indicates whether the entire suite failed or succeeded.
+Combined and document summaries provide condensed status information. Color codes guide the developer quickly to failed tests, even in very complex test document structures. A child test document can also be opend as root document without change. This allows quick testing of partial document trees and even single test documents.
 
+Here is a screenshot of a test suite of two nested test documents.
 
 <img src="https://github.com/bassmationcode/js-test/blob/main/docs/img/fig-001.png?raw=true" alt="First impression" style="width:500px"/>
 
-<p><a href="https://bassmationcode.github.io/js-test/js-test.htm">Documentation</a></p>
-
-
 ## Usage
-An author creates an HTML module test document and calls test functions defined in the js-test.js library. The library functions add HTML content to the test document, according to test result, and update the summaries up to the root document in a hierarchical structure.
+Copy the CSS and JS files into your "/include/test-support-lib/" folder, then include them in your test HTML files appropriately.
+

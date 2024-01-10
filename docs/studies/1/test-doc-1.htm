@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<title>Test Document 1</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+	
+<script type="module">
+// Add content to the document to change its size
+const t = document.createElement("template") ;
+t.innerHTML = "<p>Just another line of text...</p>" ;
+// on a button click
+addContentButton.addEventListener( "click", ( ) => {
+	document.body.append( t.content.cloneNode( true ));
+	} ) ;
+window.addEventListener( "resize", () => console.log( "Window resized " + document.documentElement.scrollHeight ));
+</script>
+	
+</head>
+<body>
+<h1>Test Document 1</h1>
+<p><button id="addContentButton">Add Content</button></p>
+<p>This is a test.</p>
+</body>
+</html>

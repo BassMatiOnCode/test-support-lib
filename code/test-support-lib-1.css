@@ -1,0 +1,61 @@
+/*
+ *		test-support-lib-1.css    2024-01-09    usp
+ */
+
+h1 { font-size : 22px }
+h1[test-status="failed"] { color : indianred }
+h1[test-status="passed"] { color : forestgreen }
+h2 { font-size : 18px }
+iframe.test-document { 
+	border : none ; 
+	width : 100% ; 
+	margin : 20px -8px ;  /* negative value compensates default horizontal margins of body */
+	}
+div.test-summary .counter {
+	margin : 0px 20px ;
+	}
+div.test-summary .counter::before {
+	display : inline-block ;
+	width : 8em ;
+	}
+div.test-summary .tests-executed::before {
+	content : "Tests executed:" ;
+	}
+div.test-summary .tests-passed::before {
+	content : "Tests passed:" ;
+	}
+div.test-summary .tests-failed::before {
+	content : "Tests failed:" ;
+	}
+div.test-summary .tests-failed {
+	color : forestgreen ;
+	}
+div.test-summary .tests-failed[failed] {
+	color : indianred ;
+	}
+p.test-item { 
+	margin-top : 0px ; 
+	margin-bottom : 0px ; 
+	}
+p.test-item::before {
+	content : "(fail)" ;
+	color : indianred ;
+	width : 60px ;
+	display : inline-block ;
+	text-align : center ;
+	}
+p.test-item[failed]::before {
+	content : "(fail)" ;
+	color : indianred ;
+	}
+p.test-item[passed]::before {
+	content : "(pass)" ;
+	color : forestgreen ;
+	}
+p.test-item span.test-counter {
+	display : inline-block ;
+	width : 2em ;
+}
+
+
+

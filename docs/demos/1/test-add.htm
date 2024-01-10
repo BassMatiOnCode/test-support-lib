@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content=""/>
+<link rel="stylesheet" href="host.css" />
+
+<link rel="stylesheet" href="/inc/test-support-lib/test-support-lib-1.css" />
+<script src="/inc/test-support-lib/test-support-lib-1.js"></script>
+
+<title>Calculator Test Module - Add Function</title></head><body>
+
+<h1>Calculator Test Module - Add Function</h1>
+
+<script>
+test.initPage( );
+test.incrementSection( );
+test.register ( `<h2>Section ${test.section} Positive Values</h2><p>The following tests probe the Calculator add method for positive results:</p>` ,
+	function ( ) {
+	test.check( "Calculator.add( 1, 2, 3 ) === 6" );
+	test.check( "Calculator.add( 1, 2, 3, 4 ) === 10" );
+	test.check( "Calculator.add( 1, 2, -3, 0 ) === 0" );
+	} ) ;
+</script>
+
+<script>
+test.incrementSection( );
+test.register ( `<h2>Section ${test.section} Negative Values</h2><p>The following tests probe the Calculator add method for negative results:</p>` ,
+	function ( ) {
+	test.check( "Calculator.add( 1, 2, -3 ) === -0" );
+	test.check( "Calculator.add( 1, 2, -3, -4 ) === -4" );
+	} ) ;
+</script>
+
+
+<script type="module">
+import * as Calculator from "./calculator.js";
+window.Calculator = Calculator;
+test.run( );
+</script>
+
+</body>
+</html>

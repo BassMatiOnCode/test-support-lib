@@ -1,0 +1,5 @@
+iframe.test-document { border : 1px solid silver ; width : 100% }
+div.test-summary { line-height:20px; margin-bottom:20px}
+div.test-summary p {tab-size:100px ; white-space:pre ; margin-top : 0px ; margin-bottom : 0px ; margin-left : 20px }
+div.test-summary > p { margin-top : 2px ; margin-bottom : 2px ; margin-left : 0px }
+p.test-item { margin-top : 0px ; margin-bottom : 0px }

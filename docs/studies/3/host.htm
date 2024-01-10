@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<style>
+iframe.test-document { border : 1px solid silver ; width : 100% }
+div.test-summary { line-height:20px; margin-bottom:20px}
+div.test-summary p {tab-size:100px ; white-space:pre ; margin-top : 0px ; margin-bottom : 0px ; margin-left : 20px }
+div.test-summary > p { margin-top : 2px ; margin-bottom : 2px ; margin-left : 0px }
+</style>
+<script type="module" src="js-test.js"></script>
+<title>Test Events</title>
+</head><body>
+
+	<h1>Study 3 Test Events</h1>
+
+<p>The test document loaded into the IFRAME elements fire events when a test fails or passes, or when the test document finishes with no errors. However, events don't bubble in the host document. Therefore, the host document must monitor the hosted documents for status change events and re-dispatch them properly.</p>
+<p>Test summary:</p>
+<div class="test-summary">
+<p>Total</p>
+<div class="test-total">
+	<p>Performed:	<span id="total-test-count">0</span></p>
+	<p>Failed:	<span id="total-fail-count">0</span></p>
+	<p>Passed:	<span id="total-pass-count">0</span></p>
+	</div>
+<p>This document</p>
+<div class="test-document">
+	<p>Performed:	<span id="document-test-count">0</span></p>
+	<p>Failed:	<span id="document-fail-count">0</span></p>
+	<p>Passed:	<span id="document-pass-count">0</span></p>
+	</div>
+</div>
+
+<iframe id="frame001" class="test-document" src="test-doc-1.htm"></iframe>
+<iframe id="frame002" class="test-document" src="test-doc-1.htm"></iframe>
+
+<h2>Notes</h2>
+<p>1. Event handlers in the host document can not be set up before the iframe document has been loaded. Therefore, the load event on iframe.contentWindow is used to set up the test event listeners.</p>
+<p>2. The event.detail member carries additional information on the test event, for instance, which element caused the test event.</p>
+<p>3. The test events increment counter in the host document.</p>
+	
+</body>
+</html>

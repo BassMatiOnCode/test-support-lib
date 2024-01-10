@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content=""/>
+<link rel="stylesheet" href="host.css" />
+
+<script src="js-test.js"></script>
+
+<title>Test Hierarchies</title></head><body>
+
+<h1>Study 5: Non-Module Test Support Library</h1>
+
+<p>Things get easier if the test support library is written as external non-module script:</p>
+
+<pre>
+&lt;script src="js-test.js"&gt;&lt;/script&gt;
+</pre>
+
+<p>Code in the library can refer to <tt>document.currentScript</tt> to inject HTML code into the host document relative to the current running script. However, test code cannot be executed directly if the module to be tested is of type module. The test scripts can <em>register</em> test functions for later execution:</p>
+
+<pre>
+&lt;script&gt;
+test.register ( "The following tests probe the <tt>Calculator.add</tt> method." ,
+	function ( ) {
+	test.check( "Calculator.add(1,2,3) === 6" );
+	test.check( "Calculator.add( 1, 2, 3, 4) === 10" );
+	} ) ;
+&lt;/script&gt;
+</pre>
+
+<p>The <tt>test.register()</tt> method takes description, function definition and a reference to the current script and wraps them in an objekt:</p>
+
+<pre>
+{
+	description : testDescription ,
+	func: testFunction,
+	script: document.currentScript
+}
+</pre>
+
+<p>Later, when the test function is executed...</p>
+
+<p>At the end of the document, the test run is started:</p>
+
+<pre>
+&lt;script type="module"&gt;
+import * as Calculator from "./calculator-module.js";
+window.Calculator = calculator;
+test.run( );
+&lt;/script&gt;
+</pre>
+
+<p>Let's put that to a test:</p>
+
+<h2>Calculator Test</h2>
+
+<p>Below this paragraph should appear a description, followed by a couple of test results:</p>
+	
+<script>
+test.register ( "<p>The following tests probe the Calculator.add method:</p>" ,
+	function ( ) {
+	test.check( "Calculator.add(1,2,3) === 6" );
+	test.check( "Calculator.add( 1, 2, 3, 4) === 10" );
+	} ) ;
+</script>
+
+<p>And here should appear the second test group:</p>
+
+<script>
+test.register ( "<p>Probing the Calculator.add method for negative results:</p>" ,
+	function ( ) {
+	test.check( "Calculator.add(1,2,-3) === 0" );
+	test.check( "Calculator.add( 1, 2, -3, -4) === -4" );
+	} ) ;
+</script>
+
+<script type="module">
+import * as Calculator from "./calculator.js";
+globalThis.Calculator = Calculator;
+import * as Dom from "./dom.js";
+globalThis.Dom = Dom;
+test.run( );
+</script>
+
+<p>Done</p>
+
+</body>
+</html>

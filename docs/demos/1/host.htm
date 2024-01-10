@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content=""/>
+<link rel="stylesheet" href="host.css" />
+
+<link rel="stylesheet" href="/inc/test-support-lib/test-support-lib-1.css" />
+<script src="/inc/test-support-lib/test-support-lib-1.js"></script>
+
+<title>Demo</title></head><body>
+
+<h1>Calculator Module Test</h1>
+
+<script>
+test.initPage( );
+test.incrementSection( );
+test.register ( `<h2>Section ${test.section}: Method Existence Tests</h2><p>The following tests probe the existence of mandatory Calculator methods:</p>` ,
+	function ( ) {
+	test.check( "Calculator.add !== undefined" );
+	test.check( "Calculator.multiply !== undefined" );
+	} ) ;
+</script>
+
+<iframe class="test-document" src="test-add.htm"></iframe>
+
+<script type="module">
+import * as Calculator from "./calculator.js";
+window.Calculator = Calculator;
+test.run( );
+</script>
+
+</body></html>

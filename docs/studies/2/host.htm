@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<title>IFrame Resizing Study</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<style>
+iframe.test-document { border : 1px solid silver ; width : 100% }
+</style>
+<script type="module" src="js-test.js" defer></script>
+</head>
+<body>
+<h1>Study 2 Resizing IFrames</h1>
+
+<p>In the previous study we noticed that the window fires the "resize" event when a new line was added to the document. However, this study shows that this event is fired because the ResizeObserver handler changes the IFRAME height. Without the ResizeObserver, the window does not fire the resize event.</p>
+
+<iframe id="frame001" class="test-document" src="test-doc-1.htm"></iframe>
+<iframe id="frame002" class="test-document" src="test-doc-1.htm"></iframe>
+
+</body>
+</html>

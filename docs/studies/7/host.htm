@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="description" content=""/>
+<link rel="stylesheet" href="host.css" />
+
+<script src="js-test.js"></script>
+
+<title>Integration Study</title></head><body>
+
+<h1>Study 7: Integration</h1>
+
+<p>This document(s) shall integrate the concepts of the previous studies.</p>
+
+<h2>Calculator Test</h2>
+
+<script>
+test.initPage( );
+test.register ( "<p>The following tests probe the existence of Calculator methods:</p>" ,
+	function ( ) {
+	test.check( "Calculator.add !== undefined" );
+	test.check( "Calculator.multiply !== undefined" );
+	} ) ;
+</script>
+
+<iframe class="test-document" src="test-add.htm"></iframe>
+
+<script type="module">
+import * as Calculator from "./calculator.js";
+window.Calculator = Calculator;
+import * as Dom from "./dom.js" ;
+window.Dom = Dom;
+test.run( );
+</script>
+
+<h2>Gotchas</h2>
+
+<p>1. A test document must provide <tt>test-summary</tt> containers with appropriate result fields before the <tt>TextEvent</tt> handler in that document accesses them. If this point is not met, test events may get lost.</p>
+
+<p>2. A test document must register <tt>TextEvent</tt> event handlers before...</p>
+
+<p>2.1 the tests in that document are started, and...
+
+<p>2.1 child documents dispatch <tt>TestEvents</tt> to their IFRAME in the parent document.</p>
+
+<p>The test support library provides the <tt>initPage()</tt> method that must be called from a non-module script as early as possible. The method creates the document summary containers and registers the test event handlers:</p>
+
+<pre>
+&lt;script&gt;
+test.initPage();
+&lt;/script&gt;
+</pre>
+
+<p>IFrame elements holding child documents should be placed below that script. This ensures that event processing infrastructure is correctly set up in the test parent document before the child test document starts running the tests.</p>
+
+<p>3. Child documents, hosted in IFRAMES, set up a <tt>ResizeObserver</tt>. The callback function sets the <tt>window.frameElement.style.height</tt> to <tt>document.documentElement.scrollHeight + 1</tt> whenever a size change is detected.</p>
+
+</body>
+</html>

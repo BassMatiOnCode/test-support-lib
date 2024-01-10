@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html lang="en-US"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="template-info" file-name="empty.htm" version="2022-12-01" editor="USP" />
+<meta name="author" content="USP" />
+<meta name="creation-date" content="2023-08-02" />
+<meta name="editor" content="USP" />
+<meta name="change-date" content="2024-01-10" />
+<meta name="version" content="1" />
+<meta name="categories" content="" />
+<meta name="tags" content="" />
+<meta name="description" content="A lightweight but powerful test support library for JavaScript. Can test classic scripts as well as  JavaScript modules." />
+<link rel="icon" type="image/png" href="/favicon.png" sizes="16x16" />
+<link rel="stylesheet" href="/inc/page.css" />
+<style>
+.text-output { 
+	font-family : Times New Roman;
+	font-size : 16px;
+	white-space : pre;
+	tab-size : 90px;
+	}
+</style>
+
+<title>JavaScript - Test Support Library</title>
+
+</head><body><header id="page-header"><object data="title.svg" type="image/svg+xml"></object></header><div id="main-toolbar"></div><main id="page-content">
+
+<h1>Test Support Library</h1>
+
+<p id="page-abstract"></p>
+
+<h2 cbc>Overview</h2><div>
+
+<p>If writing module tests is time-consuming, difficult and requires much additional effort, module tests will often be omitted. So the Test Support Library (TSLib) was written with these properties in mind:</p>
+
+<ul>
+<li>Simplicity &ndash; writing a module test is as simple and easy as writing HTML documents</li>
+<li>Lightweight &ndash; a single, small JavaScript library does the job</li>
+<li>No tools &ndash; additional test runners are not required</li>
+<li>Zero configuration &ndash; no tools = no configuration</li>
+<li>Tree-structures tests &ndash; test documents can be nested to create a test document tree.</li>
+<li>Stand-along &ndash; a test document can be run in an IFRAME parent, or stand-alone.</li>
+<li>Full debugging support &ndash; a test document can be debugged like any other HTML document</li>
+<li>No extra documentation &ndash; a test document is also the test run documentation</li>
+<li>Color indicators and test summaries guide the developer quickly to the document(s) that failed.</li>
+</ul>
+
+<p>Of course there are limitations. If you have hundreds of thousands of modules to be testes, this library may not be for you. Other test frameworks like <em>Jest</em> store test results and sourcefile hashes in a database and can omit tests on source files that did not change since the last test, and prioritize tests that previously failed. But of course, a mighty tool is a double-edged sword. There is a learing curve, there is configuration effort, there is maintenance effort. With the TSLib, you simple open the test root HTML document. When the title turns green and the test summary indicates zero errors, you are done.</p>
+
+<!--h2--Overview--></div>
+
+<h2 cbc>A Demo</h2><div>
+
+<p><a href="./demos/1/host.htm" target="_blank">Here</a> is a (very) simple calculator module test suite. If you want to see it running, open the browser developer tools and set some breakpoints to see the counters incrementing.</p>
+
+<!--h2--Demo--></div>
+
+<h2 cbc>An Example</h2><div>
+
+<p>Let's assume we are working on a calculator component with an add and a multiply method. To test the add method, add the following statements to the HTML test document.</p>
+
+<p>First, include the TSLib CSS and JS files in the document:</p>
+
+<figcaption class="listing">Adding the TSLib files</figcaption>
+<pre>
+&lt;link rel="stylesheet" href="/path/to/test-support-lib-1.css" /&gt;
+&lt;script src="/path/to/test-support-lib-1.js"&gt;&lt;/script&gt;
+</pre>
+
+<p>Then add an H1 element with a suitable document title:</p>
+
+<figcaption class="listing">Adding a document title</figcaption>
+<pre>
+&lt;h1&gt;Calculator Module Test Suite&lt;/h1&gt;
+</pre>
+
+<p>Then add a non-module script that calls <tt>test.initPage()</tt>:</p>
+
+<figcaption class="listing">Initialize the test document</figcaption>
+<pre>
+&lt;script&gt;
+test.initPage( );
+</pre>
+
+<p>This function call registers test event handlers and injects the HTML code for the result summaries into the document.</p>
+
+<p>Then you can open the first test section in the document, and register test functions:</p>
+
+<figcaption class="listing">Initialize the test document</figcaption>
+<pre>
+test.incrementSection( );
+test.register ( `&lt;h2&gt;Section ${test.section}: Method Existence Tests&lt;/h2&gt;&lt;p&gt;The following tests probe the existence of mandatory Calculator methods:&lt;/p&gt;` ,
+	<hi>function</hi> ( ) {
+	test.check( "Calculator.add !== undefined" );
+	test.check( "Calculator.multiply !== undefined" );
+	} ) ;
+&lt;/script&gt;
+</pre>
+
+<p>The test function contains the individual <tt>test.check()</tt> calls that probe various aspects of the test target. In the example above, we check the existence of the multiply and add methods. These test functions are not immedicately invoked, they are store together with context information in an internal array. Their execution is started with the <tt>test.run()</tt> method.</p>
+
+<p>These test scripts can be intermixed with regular HTML code for test documentation, explanations, graphics, et cetera. Everything it takes to explain the sequence of tests.</p>
+
+<p>At the bottom of the document is the start script:</p>
+
+<figcaption class="listing">Starting the tests</figcaption>
+<pre>
+&lt;script type="module"&gt;
+import * as Calculator from "./calculator.js";
+window.Calculator = Calculator;
+test.run( );
+&lt;/script&gt;
+</pre>
+
+<p>The code loads the calculator module and makes it avaliable in the global scope (window). Then the <tt>run</tt> method is called.</p>
+
+<p>That's all.</p>
+
+<p>Note that because <tt>calculator.js</tt> is a JavaScript module, the script is also of type "module".</p>
+
+<p>You get a nice summary at the top of the document:</p>
+
+<pre>
+Tests executed:	2
+Tests passed:		1
+Tests failed:		1
+</pre>
+
+<p>And the document H1 title should have turned red because there was a fail: The multiply method has not yet been implemented.</p>
+
+<p>The individual checks are also documented:</p>
+
+<pre>
+The following tests probe the existence of Calculator methods:
+(pass)	Calculator.add !== undefined
+(fail)	Calculator.multiply !== undefined
+</pre>
+
+<p>Here we can see test code, and the result.</p>
+
+<p>TSLib runs the tests, and the <tt>test.check()</tt> functions inject the HTML test documentation. So the test document serves as test runner as well as test result documentation. If your source code has changed, simply reload the test document, and you should see if there are problems, and where they are.</p>
+
+<!--h2--Example--></div>
+
+<h2 cbc>Hierarchical Test Document Structures</h2><div>
+
+<p>Non-trivial test suites need structures. The test support library supports splitting test cases into multiple documents. Any test document can include one or more child test documents in IFRAME elements, and thereby create a tree structure. The child documents integrate well into their parent documents so that no information is hidden from the user.</p>
+
+<figcaption class="listing">Including child test documents</figcaption>
+<pre>
+&lt;iframe class="test-document" src="/path/to/another/test-document.htm"&gt;&lt;/iframe&gt;
+</pre>
+
+<p>Child documents are written exactly as root documents. They detect if they are loaded in an IFRAME parent, and then relay their test execution events to the parent document, where they are aggregated. Effectively, the test execution events "bubble" up to the tree root document, where they are collected. As a result, the root document can provide a complete test summary of the entire test document tree.</p>
+
+<p>On the other hand, every test child document can be executed individually without change. This allows to run a quick test on a partial test tree.</p>
+
+<p>If you want to run a test document without descending into child test documents, add the search parameter "?descend=no" to the test document url. Then a <tt>MutationObserver</tt> is created that prevents IFRAME with a classname of "test-document" elements to be added to the DOM.</p>
+
+<!--h2--Hierarchical test document structures--></div>
+
+<h2 cbc>Implementation Details</h2><div>
+
+<h3 cbc>Test Events</h3><div>
+
+<p>The <tt>check</tt> functions dispatch a <tt>TestEvent</tt> to the document. The test event detail member carries information about the test result and the host document. The <tt>pageInit()</tt> function registers an even handler on the document that listens to such test events.</p>
+
+<p>The first job of the event handler is to update the test result summaries in the document. The second job is to relay the event to the iframe parent document if there ist one. The <tt>detail.origin</tt> property changes for "host-document" to "hosted-document", and the <tt>detail.url</tt> property carries the <tt>document.location.url</tt>. These properties are used in the parent element prevent updating the document summary variables; these are used to record the test results from the document. Test results from child documents update the total summary values only.</p> 
+
+<!--h3--Test Events--></div>
+
+<h3 cbc>pageInit()</h3><div>
+
+<p>The <tt>pageInit()</tt> function creates the test infrastructure in the document. It creates the test summary containers, registers the test event handler with the document element, and sets up a size observer to monitor document height changes. More on this later.</p>
+
+<p>The script that calls the <tt>pageInit()</tt> function must be located <em>before</em> the first IFRAME element that loads a child test document, because the test event processing infrastructure must be set up <em>before</em> the child document relays the first test event to its parent.</p>
+
+<!--h3--pageInit()--></div>
+
+<h3 cbc>Registering Test Functions</h3><div>
+
+<p>If the test target is a JavaScript module, the test code must either run in a module script or is called from an import promise. Import statement can only be used in scripts of type "module":</p>
+
+<figcaption class="listing">Importing a Module A</figcaption>
+<pre>
+&lt;script type="module"&gt;
+import * as Caluclator from "/path/to/calculator.js" ;
+check( "Calculator.add( 1, 2, 3 ) === 6" );
+&lt;/script&gt;
+</pre>
+
+<p>The <tt>import()</tt> function can be used in a non-module script &hellip;</p>
+
+<figcaption class="listing">Importing a Module B</figcaption>
+<pre>
+&lt;script&gt;
+import("/path/to/calculator.js" ).then( Calculator => {
+	check( "Calculator.add( 1, 2, 3 ) === 6" );
+	} ) ;
+&lt;/script&gt;
+</pre>
+
+<p>&hellip; but the the import() statement returns a promise, and the test code will be called from a promise. In both cases, <tt>document.currentScript</tt> is null and therefore cannot be used to inject test result code into the host document. We <em>could</em> provide a mechanism to locate the injection point, but that requires the use of identifiers in the document and requires additional effort, and yet more effort when it comes to maintenance.</p>
+
+<p>The solution provided is a simple concept of registration: Test code is wrapped in a function. The function is combined with a referene to the current script in an object, and this object is added to a list. At the end of the host document, when all test functions have been registered in this way, the <tt>test.run()</tt> method is called execute the test object list.</p>
+
+<p>When the check functions <tt>test.currentTest.func</tt> are executed, <tt>test.currentTest.script</tt> references the script element that registered the test function. The test result elements are then injected into host document, right before that script element.</p>
+
+<p>This method works for both module and non-module test targets.</p>
+
+<!--h3--Registering Test Functions--></div>
+
+<h3 cbc>IFRAME Resizing</h3><div>
+
+<p>A child document grows when test result elements are added to the document. The height of IFRAME elements in the test parent document is modified accordingly to eliminate the need for vertical scrolling.</p>
+
+<p>For this purpose, the TSLib sets up a <tt>ResizeObserver</tt> on the <tt>document.documentElement</tt> if the document window has an IFRAME parent. The observer then invokes a callback function that adjusts the IFRAME height in the parent document.</p> 
+
+<!--h3--IFRAME Resizing--></div>
+
+<!--h2--></div>
+
+<h2 cbc>Links</h2><div>
+
+<p>A <a href="t-0-1.htm">module test</a></p>
+
+<p>A <a href="t-0.htm">module test suite</a></p>
+
+<!--h2--></div>
+
+</main><footer id="page-footer"></footer><script type="module" src="/inc/page.js" ></script></body></html>

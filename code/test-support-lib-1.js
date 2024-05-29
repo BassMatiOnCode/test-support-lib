@@ -17,6 +17,7 @@ test.check = function ( title, expression = title ) {
 	//	Executes a test and documents the result.
 	console.log("checking")
 	//	Check
+	if ( typeof title === "function" ) title = title.toString( );
 	const result = (typeof expression === "string" ? eval( expression ) : expression( )) ? "passed" : "failed" ;
 	// Update counter
 	//	Inject test result
